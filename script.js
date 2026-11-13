@@ -1,35 +1,38 @@
+// KIKI PORTFOLIO — script.js
+const menuToggle = document.querySelector("#menu-toggle");
+const navLinks = document.querySelector("#nav-links");
 
-// MOBILE NAVIGATION
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
+  });
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-// Toggle menu
-menuBtn.addEventListener("click", function () {
-
-    navLinks.classList.toggle("active");
-
-    const isOpen = navLinks.classList.contains("active");
-
-    menuBtn.textContent = isOpen ? "✕" : "☰";
-
-    menuBtn.setAttribute("aria-label",
-        isOpen ? "Tutup menu" : "Buka menu"
-    );
-
-});
-
-// Close menu after clicking navigation
-document.querySelectorAll(".nav-links a").forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
-        navLinks.classList.remove("active");
-
-        menuBtn.textContent = "☰";
-
-        menuBtn.setAttribute("aria-label", "Buka menu");
-
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Buka menu");
     });
+  });
+}
 
-});
+const year = document.querySelector("#year");
+if (year) year.textContent = new Date().getFullYear();
+
+const revealItems = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        currentObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}

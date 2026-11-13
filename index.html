@@ -1,765 +1,139 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kiki | Personal Portfolio</title>
-    <meta name="description" content="Personal portfolio Kiki, Fresh Graduate Teknik Komputer dan Jaringan.">
-    <meta name="author" content="Kiki">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg: #080d18;
-            --surface: #101827;
-            --primary: #60a5fa;
-            --text: #f1f5f9;
-            --muted: #94a3b8;
-            --border: rgba(148,163,184,.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1150px;
-            margin: auto;
-        }
-
-        /* NAVBAR */
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(8,13,24,.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            font-size: 14px;
-            transition: .3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .menu-btn {
-            display: none;
-            background: none;
-            color: white;
-            border: none;
-            font-size: 27px;
-            cursor: pointer;
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 0 70px;
-            background:
-                radial-gradient(ellipse at 80% 30%, rgba(37,99,235,.15), transparent 45%);
-        }
-
-        .hero-content {
-            max-width: 780px;
-        }
-
-        .availability {
-            display: inline-block;
-            padding: 7px 15px;
-            border: 1px solid rgba(96,165,250,.3);
-            background: rgba(96,165,250,.08);
-            border-radius: 30px;
-            color: var(--primary);
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(40px, 7vw, 76px);
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            color: var(--muted);
-            max-width: 600px;
-            font-size: 17px;
-            margin-bottom: 30px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 23px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: .3s;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #08111f;
-        }
-
-        .btn-primary:hover {
-            background: #93c5fd;
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* GENERAL SECTION */
-
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 35px;
-            margin-bottom: 12px;
-        }
-
-        .section-subtitle {
-            color: var(--muted);
-            margin-bottom: 45px;
-        }
-
-        .highlight {
-            color: var(--primary);
-        }
-
-        /* ABOUT */
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 45px;
-            align-items: center;
-        }
-
-        .about-card {
-            background: var(--surface);
-            padding: 30px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-        }
-
-        .about-card h3 {
-            font-size: 21px;
-            margin-bottom: 15px;
-        }
-
-        .about-card p {
-            color: var(--muted);
-            font-size: 15px;
-        }
-
-        .info-item {
-            padding: 13px 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .info-item strong {
-            color: var(--text);
-        }
-
-        /* SKILLS */
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .skill {
-            padding: 25px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: .3s;
-        }
-
-        .skill:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .skill h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
-        }
-
-        .skill p {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        /* PROJECTS */
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 28px;
-            transition: .3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .project-number {
-            color: var(--primary);
-            font-size: 13px;
-            margin-bottom: 18px;
-        }
-
-        .project-card h3 {
-            font-size: 21px;
-            margin-bottom: 12px;
-        }
-
-        .project-card p {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tags span {
-            background: rgba(96,165,250,.1);
-            color: var(--primary);
-            padding: 5px 10px;
-            font-size: 11px;
-            border-radius: 5px;
-        }
-
-        /* EXPERIENCE */
-
-        .experience-card {
-            background: var(--surface);
-            border-left: 3px solid var(--primary);
-            padding: 30px;
-            border-radius: 8px;
-        }
-
-        .experience-card h3 {
-            margin-bottom: 5px;
-        }
-
-        .experience-card .date {
-            color: var(--primary);
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
-
-        .experience-card p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        /* CONTACT */
-
-        .contact-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 45px 25px;
-            text-align: center;
-        }
-
-        .contact-box h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .contact-box p {
-            color: var(--muted);
-            margin-bottom: 25px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 25px 0;
-            text-align: center;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        /* MOBILE */
-
-        @media(max-width: 768px) {
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background: #101827;
-                padding: 25px;
-                flex-direction: column;
-                gap: 20px;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .about-grid,
-            .skills-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 75px 0;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .section-title {
-                font-size: 29px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portofolio Kiki, fresh graduate Teknik Jaringan Komputer.">
+  <meta name="author" content="Kiki">
+  <meta name="theme-color" content="#0b1120">
+  <title>Kiki — Personal Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
+  <div class="site-glow site-glow-one"></div>
+  <div class="site-glow site-glow-two"></div>
 
-    <!-- NAVBAR -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#home" class="logo">Kiki<span>.</span></a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navigasi utama">
+      <a class="brand" href="#home" aria-label="Kiki, ke halaman utama"><span class="brand-mark">K</span><span>kiki<span class="brand-dot">.</span></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">Tentang</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#projects">Proyek</a>
+        <a href="#experience">Pengalaman</a>
+        <a class="nav-contact" href="#contact">Hubungi Saya <span>↗</span></a>
+      </div>
+    </nav>
+  </header>
 
-                <button class="menu-btn" id="menuBtn" aria-label="Buka menu">
-                    ☰
-                </button>
-
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+  <main>
+    <section class="hero container section" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="status-dot"></span> TERBUKA UNTUK PELUANG KERJA</p>
+        <p class="hero-kicker">Halo, saya</p>
+        <h1>Kiki<span class="accent">.</span><br><span class="outline-text">IT Enthusiast</span></h1>
+        <p class="hero-description">Fresh graduate Teknik Jaringan Komputer yang tertarik pada dunia IT, jaringan komputer, dan pengembangan web. Senang belajar hal baru dan mengembangkan solusi melalui teknologi.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Lihat Proyek <span>↗</span></a>
+          <a class="button button-ghost" href="#contact">Hubungi Saya</a>
         </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-
-                <div class="availability">
-                    ● Personal Portfolio
-                </div>
-
-                <h1>
-                    Hello, I'm <span>Kiki.</span><br>
-                    IT Enthusiast.
-                </h1>
-
-                <p>
-                    Fresh Graduate Teknik Komputer dan Jaringan yang
-                    memiliki ketertarikan pada teknologi, computer networking,
-                    dan web development. Selalu terbuka untuk belajar,
-                    berkembang, dan menghadapi tantangan baru.
-                </p>
-
-                <div class="buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        Explore My Work →
-                    </a>
-
-                    <a href="#contact" class="btn btn-outline">
-                        Contact Me
-                    </a>
-                </div>
-
-            </div>
+        <div class="hero-meta">
+          <span><span class="meta-line"></span> Berbasis di Indonesia</span>
+          <span>Fokus: IT Support & Web</span>
         </div>
+      </div>
+      <div class="hero-visual reveal" aria-label="Ilustrasi identitas Kiki">
+        <div class="visual-grid"></div>
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="profile-card">
+          <div class="profile-card-top"><span>PERSONAL PROFILE</span><span class="card-dots">•••</span></div>
+          <div class="profile-avatar">K<span class="avatar-spark">✦</span></div>
+          <h2>Kiki</h2>
+          <p>IT Enthusiast · TKJ</p>
+          <div class="profile-divider"></div>
+          <div class="profile-tags"><span>Networking</span><span>Web</span><span>IT Support</span></div>
+          <div class="profile-card-bottom"><span class="status-dot"></span> Always learning</div>
+        </div>
+        <span class="floating-chip chip-top">&lt;/&gt; <b>Code</b></span>
+        <span class="floating-chip chip-bottom"><span class="chip-icon">⌘</span> Technology</span>
+      </div>
+      <a class="scroll-cue" href="#about"><span></span> SCROLL TO EXPLORE</a>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container">
-
-            <h2 class="section-title">
-                About <span class="highlight">Me.</span>
-            </h2>
-
-            <p class="section-subtitle">
-                Get to know more about me and my background.
-            </p>
-
-            <div class="about-grid">
-
-                <div class="about-card">
-                    <h3>Who Am I?</h3>
-
-                    <p>
-                        Saya merupakan lulusan SMK jurusan Teknik Komputer
-                        dan Jaringan. Memiliki pemahaman dasar mengenai
-                        jaringan komputer, perangkat keras, sistem operasi,
-                        serta pengembangan website.
-
-                        Saya senang mempelajari hal baru, menyelesaikan
-                        masalah, dan mengembangkan kemampuan di bidang
-                        teknologi informasi.
-                    </p>
-                </div>
-
-                <div class="about-card">
-
-                    <div class="info-item">
-                        <strong>Name:</strong> Kiki
-                    </div>
-
-                    <div class="info-item">
-                        <strong>Education:</strong> SMK Teknik Komputer dan Jaringan
-                    </div>
-
-                    <div class="info-item">
-                        <strong>Interest:</strong> IT & Web Development
-                    </div>
-
-                    <div class="info-item">
-                        <strong>Location:</strong> Indonesia
-                    </div>
-
-                    <div class="info-item">
-                        <strong>Status:</strong> Fresh Graduate
-                    </div>
-
-                </div>
-            </div>
+    <section class="section container" id="about">
+      <div class="section-heading reveal"><p class="eyebrow">01 / TENTANG SAYA</p><h2>Mengenal saya <span class="accent">lebih dekat.</span></h2></div>
+      <div class="about-layout">
+        <div class="about-intro reveal"><p class="large-copy">Saya percaya bahwa teknologi bukan hanya tentang perangkat dan kode, tetapi juga tentang <span class="accent">memecahkan masalah</span> dan terus berkembang.</p></div>
+        <div class="about-details reveal">
+          <p>Saya merupakan lulusan Teknik Jaringan Komputer yang memiliki ketertarikan pada infrastruktur jaringan, perangkat komputer, sistem operasi, dan pengembangan website. Saya terbiasa belajar secara mandiri, berkomunikasi dalam tim, serta beradaptasi dengan lingkungan baru.</p>
+          <p>Saat ini saya ingin mengembangkan kemampuan dan mendapatkan pengalaman profesional di bidang teknologi informasi.</p>
+          <div class="info-grid">
+            <div><span>Nama</span><strong>Kiki</strong></div>
+            <div><span>Pendidikan</span><strong>SMK — Teknik Jaringan Komputer</strong></div>
+            <div><span>Minat</span><strong>IT Support · Networking · Web</strong></div>
+            <div><span>Status</span><strong>Fresh Graduate</strong></div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="container">
-
-            <h2 class="section-title">
-                My <span class="highlight">Skills.</span>
-            </h2>
-
-            <p class="section-subtitle">
-                Technologies and knowledge that I have learned.
-            </p>
-
-            <div class="skills-grid">
-
-                <div class="skill">
-                    <h3>HTML & CSS</h3>
-                    <p>Building and styling responsive websites.</p>
-                </div>
-
-                <div class="skill">
-                    <h3>JavaScript</h3>
-                    <p>Understanding basic programming and website interaction.</p>
-                </div>
-
-                <div class="skill">
-                    <h3>Computer Networking</h3>
-                    <p>Basic networking, IP addressing, routing and configuration.</p>
-                </div>
-
-                <div class="skill">
-                    <h3>Hardware</h3>
-                    <p>Computer assembly, troubleshooting and maintenance.</p>
-                </div>
-
-                <div class="skill">
-                    <h3>Operating System</h3>
-                    <p>Basic installation, configuration and troubleshooting.</p>
-                </div>
-
-                <div class="skill">
-                    <h3>Problem Solving</h3>
-                    <p>Analytical thinking and finding technical solutions.</p>
-                </div>
-
-            </div>
+    <section class="section section-panel" id="skills">
+      <div class="container">
+        <div class="section-heading reveal"><p class="eyebrow">02 / KEAHLIAN</p><h2>Hal yang saya <span class="accent">pelajari.</span></h2><p class="section-subtitle">Beberapa bidang yang saya pelajari dan terus kembangkan.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><div class="skill-icon">⌘</div><h3>Computer & Hardware</h3><p>Pengenalan komponen komputer, perakitan dasar, dan troubleshooting perangkat.</p><div class="skill-label">HARDWARE</div></article>
+          <article class="skill-card reveal"><div class="skill-icon">⌁</div><h3>Computer Networking</h3><p>Dasar jaringan komputer, konfigurasi jaringan, IP addressing, dan konsep routing.</p><div class="skill-label">NETWORKING</div></article>
+          <article class="skill-card reveal"><div class="skill-icon">▤</div><h3>Operating Systems</h3><p>Penggunaan dan instalasi dasar sistem operasi serta pengelolaan perangkat.</p><div class="skill-label">SYSTEM</div></article>
+          <article class="skill-card reveal"><div class="skill-icon">〈/〉</div><h3>Web Development</h3><p>HTML, CSS, dan JavaScript untuk membangun halaman website sederhana.</p><div class="skill-label">DEVELOPMENT</div></article>
+          <article class="skill-card reveal"><div class="skill-icon">⌕</div><h3>Problem Solving</h3><p>Menganalisis kendala, mencari informasi, dan mencoba solusi secara bertahap.</p><div class="skill-label">SOFT SKILL</div></article>
+          <article class="skill-card reveal"><div class="skill-icon">◎</div><h3>Communication</h3><p>Mampu bekerja mandiri maupun berkolaborasi dan berkomunikasi dalam tim.</p><div class="skill-label">COLLABORATION</div></article>
         </div>
+      </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="container">
-
-            <h2 class="section-title">
-                Featured <span class="highlight">Projects.</span>
-            </h2>
-
-            <p class="section-subtitle">
-                Some projects and works I have developed.
-            </p>
-
-            <div class="projects-grid">
-
-                <div class="project-card">
-                    <div class="project-number">PROJECT / 01</div>
-
-                    <h3>Personal Portfolio Website</h3>
-
-                    <p>
-                        A personal website designed to introduce my profile,
-                        technical skills, and experience in information technology.
-                    </p>
-
-                    <div class="tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-number">PROJECT / 02</div>
-
-                    <h3>Coffee Shop Website</h3>
-
-                    <p>
-                        A simple website for a coffee shop featuring
-                        business information, navigation, and product menus.
-                    </p>
-
-                    <div class="tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>Web Design</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-number">PROJECT / 03</div>
-
-                    <h3>Computer Networking</h3>
-
-                    <p>
-                        Learning and practicing basic computer network
-                        configuration, IP addressing, and network troubleshooting.
-                    </p>
-
-                    <div class="tags">
-                        <span>Networking</span>
-                        <span>TCP/IP</span>
-                        <span>TKJ</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-number">PROJECT / 04</div>
-
-                    <h3>Creative Web Project</h3>
-
-                    <p>
-                        Developing interactive web experiences using
-                        HTML, CSS, and JavaScript.
-                    </p>
-
-                    <div class="tags">
-                        <span>JavaScript</span>
-                        <span>Animation</span>
-                        <span>Web Design</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <section class="section container" id="projects">
+      <div class="section-heading reveal"><p class="eyebrow">03 / PROYEK PILIHAN</p><h2>Beberapa hal yang <span class="accent">saya buat.</span></h2><p class="section-subtitle">Contoh proyek yang bisa kamu kembangkan dan lengkapi dengan hasil pekerjaanmu.</p></div>
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-art project-art-one"><div class="browser-frame"><div class="browser-bar"><i></i><i></i><i></i></div><div class="mock-title">Filosofi<span>Kopi.</span></div><div class="mock-subtitle">A GOOD DAY STARTS WITH COFFEE</div><div class="mock-button"></div><div class="mock-cup">☕</div></div><span class="project-number">01</span></div>
+          <div class="project-info"><div><p class="project-type">WEB DEVELOPMENT</p><h3>Website Coffee Shop</h3></div><span class="project-arrow">↗</span><p>Website sederhana bertema coffee shop dengan struktur halaman, navigasi, dan tampilan responsif.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-art project-art-two"><div class="code-window"><div class="code-top"><i></i><i></i><i></i><span>portfolio.js</span></div><div class="code-lines"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div><div class="code-symbol">&lt; / &gt;</div></div><span class="project-number">02</span></div>
+          <div class="project-info"><div><p class="project-type">PERSONAL PROJECT</p><h3>Personal Portfolio</h3></div><span class="project-arrow">↗</span><p>Website portofolio pribadi untuk memperkenalkan profil, keahlian, pengalaman, dan proyek.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></div>
+        </article>
+      </div>
+      <p class="project-note">*Pastikan deskripsi dan tautan proyek sudah sesuai dengan hasil pekerjaanmu sebelum dipublikasikan.</p>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="container">
-
-            <h2 class="section-title">
-                My <span class="highlight">Experience.</span>
-            </h2>
-
-            <p class="section-subtitle">
-                My educational and professional journey.
-            </p>
-
-            <div class="experience-card">
-
-                <h3>Internship / Praktik Kerja Lapangan</h3>
-
-                <div class="date">
-                    PT Brinks Solutions Indonesia
-                </div>
-
-                <p>
-                    Mendapatkan pengalaman bekerja di lingkungan profesional,
-                    mempelajari alur kerja perusahaan, meningkatkan kedisiplinan,
-                    komunikasi, serta kemampuan beradaptasi dan bekerja sama
-                    dalam tim.
-                </p>
-
-            </div>
+    <section class="section section-panel" id="experience">
+      <div class="container">
+        <div class="section-heading reveal"><p class="eyebrow">04 / PENGALAMAN & PENDIDIKAN</p><h2>Perjalanan <span class="accent">saya.</span></h2></div>
+        <div class="timeline">
+          <article class="timeline-item reveal"><div class="timeline-marker"></div><div class="timeline-date">PENGALAMAN INDUSTRI</div><div class="timeline-content"><h3>Praktik Kerja Lapangan (PKL)</h3><p class="timeline-place">PT Brinks Solutions Indonesia</p><p>Pengalaman praktik kerja sebagai bagian dari proses pembelajaran untuk mengenal lingkungan kerja profesional.</p></div></article>
+          <article class="timeline-item reveal"><div class="timeline-marker"></div><div class="timeline-date">PENDIDIKAN</div><div class="timeline-content"><h3>SMK An-Nurmaniyah</h3><p class="timeline-place">Teknik Jaringan Komputer</p><p>Mempelajari dasar jaringan komputer, perangkat keras, sistem operasi, dan teknologi informasi.</p></div></article>
         </div>
+      </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-
-            <div class="contact-box">
-
-                <h2>Let's Work <span class="highlight">Together.</span></h2>
-
-                <p>
-                    Interested in collaborating or discussing opportunities?
-                    Feel free to get in touch with me.
-                </p>
-
-                <div class="buttons" style="justify-content:center;">
-
-                    <a href="mailto:emailkamu@gmail.com"
-                       class="btn btn-primary">
-                        Send Me an Email
-                    </a>
-
-                    <a href="https://github.com/usernamekamu"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="btn btn-outline">
-                        GitHub Profile
-                    </a>
-
-                </div>
-
-            </div>
-        </div>
+    <section class="section container contact-section" id="contact">
+      <div class="contact-box reveal">
+        <p class="eyebrow">05 / KONTAK</p>
+        <h2>Punya kesempatan atau ingin <span class="accent">berdiskusi?</span></h2>
+        <p>Saya terbuka untuk kesempatan kerja, kolaborasi, maupun diskusi seputar teknologi.</p>
+        <a class="button button-primary" href="mailto:emailkamu@example.com">Kirim Email <span>↗</span></a>
+        <div class="contact-hint">Ganti alamat email dan tautan media sosial dengan kontak aktif milikmu.</div>
+      </div>
     </section>
+  </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            © 2026 Kiki. Designed & Developed with passion.
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        const menuBtn = document.getElementById("menuBtn");
-        const navLinks = document.getElementById("navLinks");
-
-        menuBtn.addEventListener("click", function () {
-            navLinks.classList.toggle("active");
-
-            menuBtn.textContent =
-                navLinks.classList.contains("active") ? "✕" : "☰";
-        });
-
-        document.querySelectorAll(".nav-links a").forEach(link => {
-            link.addEventListener("click", function () {
-                navLinks.classList.remove("active");
-                menuBtn.textContent = "☰";
-            });
-        });
-    </script>
-
+  <footer class="footer container"><a class="brand" href="#home"><span class="brand-mark">K</span><span>kiki<span class="brand-dot">.</span></span></a><p>© <span id="year"></span> Kiki. Dibuat dengan semangat belajar.</p><a href="#home" class="back-top">Kembali ke atas ↑</a></footer>
 </body>
 </html>
