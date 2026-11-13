@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kiki | Personal Portfolio</title>
+    <meta name="description" content="Personal portfolio Kiki, Fresh Graduate Teknik Komputer dan Jaringan.">
+    <meta name="author" content="Kiki">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #080d18;
+            --surface: #101827;
+            --primary: #60a5fa;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: rgba(148,163,184,.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(8,13,24,.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 70px;
+            background:
+                radial-gradient(ellipse at 80% 30%, rgba(37,99,235,.15), transparent 45%);
+        }
+
+        .hero-content {
+            max-width: 780px;
+        }
+
+        .availability {
+            display: inline-block;
+            padding: 7px 15px;
+            border: 1px solid rgba(96,165,250,.3);
+            background: rgba(96,165,250,.08);
+            border-radius: 30px;
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(40px, 7vw, 76px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 600px;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 23px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #08111f;
+        }
+
+        .btn-primary:hover {
+            background: #93c5fd;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* GENERAL SECTION */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 45px;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .about-card {
+            background: var(--surface);
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .about-card h3 {
+            font-size: 21px;
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .info-item {
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .info-item strong {
+            color: var(--text);
+        }
+
+        /* SKILLS */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .skill {
+            padding: 25px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: .3s;
+        }
+
+        .skill:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            transition: .3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .project-number {
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .project-card h3 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tags span {
+            background: rgba(96,165,250,.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            font-size: 11px;
+            border-radius: 5px;
+        }
+
+        /* EXPERIENCE */
+
+        .experience-card {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .experience-card h3 {
+            margin-bottom: 5px;
+        }
+
+        .experience-card .date {
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .experience-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 45px 25px;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #101827;
+                padding: 25px;
+                flex-direction: column;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .about-grid,
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">Kiki<span>.</span></a>
+
+                <button class="menu-btn" id="menuBtn" aria-label="Buka menu">
+                    ☰
+                </button>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+
+                <div class="availability">
+                    ● Personal Portfolio
+                </div>
+
+                <h1>
+                    Hello, I'm <span>Kiki.</span><br>
+                    IT Enthusiast.
+                </h1>
+
+                <p>
+                    Fresh Graduate Teknik Komputer dan Jaringan yang
+                    memiliki ketertarikan pada teknologi, computer networking,
+                    dan web development. Selalu terbuka untuk belajar,
+                    berkembang, dan menghadapi tantangan baru.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        Explore My Work →
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Contact Me
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+
+            <h2 class="section-title">
+                About <span class="highlight">Me.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Get to know more about me and my background.
+            </p>
+
+            <div class="about-grid">
+
+                <div class="about-card">
+                    <h3>Who Am I?</h3>
+
+                    <p>
+                        Saya merupakan lulusan SMK jurusan Teknik Komputer
+                        dan Jaringan. Memiliki pemahaman dasar mengenai
+                        jaringan komputer, perangkat keras, sistem operasi,
+                        serta pengembangan website.
+
+                        Saya senang mempelajari hal baru, menyelesaikan
+                        masalah, dan mengembangkan kemampuan di bidang
+                        teknologi informasi.
+                    </p>
+                </div>
+
+                <div class="about-card">
+
+                    <div class="info-item">
+                        <strong>Name:</strong> Kiki
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Education:</strong> SMK Teknik Komputer dan Jaringan
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Interest:</strong> IT & Web Development
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Location:</strong> Indonesia
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Status:</strong> Fresh Graduate
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+
+            <h2 class="section-title">
+                My <span class="highlight">Skills.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Technologies and knowledge that I have learned.
+            </p>
+
+            <div class="skills-grid">
+
+                <div class="skill">
+                    <h3>HTML & CSS</h3>
+                    <p>Building and styling responsive websites.</p>
+                </div>
+
+                <div class="skill">
+                    <h3>JavaScript</h3>
+                    <p>Understanding basic programming and website interaction.</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Computer Networking</h3>
+                    <p>Basic networking, IP addressing, routing and configuration.</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Hardware</h3>
+                    <p>Computer assembly, troubleshooting and maintenance.</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Operating System</h3>
+                    <p>Basic installation, configuration and troubleshooting.</p>
+                </div>
+
+                <div class="skill">
+                    <h3>Problem Solving</h3>
+                    <p>Analytical thinking and finding technical solutions.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+
+            <h2 class="section-title">
+                Featured <span class="highlight">Projects.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Some projects and works I have developed.
+            </p>
+
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-number">PROJECT / 01</div>
+
+                    <h3>Personal Portfolio Website</h3>
+
+                    <p>
+                        A personal website designed to introduce my profile,
+                        technical skills, and experience in information technology.
+                    </p>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">PROJECT / 02</div>
+
+                    <h3>Coffee Shop Website</h3>
+
+                    <p>
+                        A simple website for a coffee shop featuring
+                        business information, navigation, and product menus.
+                    </p>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">PROJECT / 03</div>
+
+                    <h3>Computer Networking</h3>
+
+                    <p>
+                        Learning and practicing basic computer network
+                        configuration, IP addressing, and network troubleshooting.
+                    </p>
+
+                    <div class="tags">
+                        <span>Networking</span>
+                        <span>TCP/IP</span>
+                        <span>TKJ</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">PROJECT / 04</div>
+
+                    <h3>Creative Web Project</h3>
+
+                    <p>
+                        Developing interactive web experiences using
+                        HTML, CSS, and JavaScript.
+                    </p>
+
+                    <div class="tags">
+                        <span>JavaScript</span>
+                        <span>Animation</span>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="container">
+
+            <h2 class="section-title">
+                My <span class="highlight">Experience.</span>
+            </h2>
+
+            <p class="section-subtitle">
+                My educational and professional journey.
+            </p>
+
+            <div class="experience-card">
+
+                <h3>Internship / Praktik Kerja Lapangan</h3>
+
+                <div class="date">
+                    PT Brinks Solutions Indonesia
+                </div>
+
+                <p>
+                    Mendapatkan pengalaman bekerja di lingkungan profesional,
+                    mempelajari alur kerja perusahaan, meningkatkan kedisiplinan,
+                    komunikasi, serta kemampuan beradaptasi dan bekerja sama
+                    dalam tim.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+
+            <div class="contact-box">
+
+                <h2>Let's Work <span class="highlight">Together.</span></h2>
+
+                <p>
+                    Interested in collaborating or discussing opportunities?
+                    Feel free to get in touch with me.
+                </p>
+
+                <div class="buttons" style="justify-content:center;">
+
+                    <a href="mailto:emailkamu@gmail.com"
+                       class="btn btn-primary">
+                        Send Me an Email
+                    </a>
+
+                    <a href="https://github.com/usernamekamu"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-outline">
+                        GitHub Profile
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            © 2026 Kiki. Designed & Developed with passion.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+
+            menuBtn.textContent =
+                navLinks.classList.contains("active") ? "✕" : "☰";
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuBtn.textContent = "☰";
+            });
+        });
+    </script>
+
+</body>
+</html>
